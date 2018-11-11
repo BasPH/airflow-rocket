@@ -18,7 +18,7 @@ endif
 
 .PHONY: pytest
 pytest:
-	echo bla
+	pytest tests/
 
 .PHONY: hadolint
 hadolint:
@@ -31,5 +31,5 @@ build:
 .PHONY: ci
 ci: | black pylint misspell pytest hadolint build
 
-.PHONY: push
-push: 
+#.PHONY: push
+#push: 

@@ -4,9 +4,11 @@
 
 This repository contains code accompanying this [Airflow blog post series](URL HERE).
 
-Throughout the blog post series, I explain various Airflow concepts and give practices examples using the [Launch Library API](https://launchlibrary.net/docs/1.4/api.html), hence the repository name "Airflow Rocket".
+Throughout the blog post series, I explain various Airflow concepts and give practices examples using the [Launch Library API](https://launchlibrary.net/docs/1.4/api.html), hence the repository name "Airflow Rocket". 
 
 **IMPORTANT**: The Dockerfile in this repository creates a single image containing all Airflow components, and examples and demos shown in the blog post. It is **NOT** intended for production usage! For more information on running Airflow in production, read the [blog post part 4](URL HERE).
+
+If you mount your own dags volume, the container takes 10-15 seconds to start up (only if you mounted your own DAGs volume). This is because `airflow initdb` is executed at startup. The idea is to clear all built-in DAGs and only display your own, mounted, DAGs.
 
 Versions used:
 

@@ -23,6 +23,7 @@ task7 = DummyOperator(task_id="task7", dag=dag)
 task8 = DummyOperator(task_id="task8", dag=dag)
 task9 = DummyOperator(task_id="task9", dag=dag)
 
-[task1, task2, task3] >> task4 >> [task5, task6, task7]
-task6 >> [task8, task9]
-task7 >> [task8, task9]
+task1 >> [task2, task3]
+task2 >> task4 >> [task5, task7] >> task9
+task3 >> task6 >> task7
+task5 >> task7 >> task8 >> task9

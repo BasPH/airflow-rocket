@@ -1,4 +1,7 @@
+.gitignore
+.pylintrc
 Dockerfile
 Makefile
 README.md
 rocket.png
+tests

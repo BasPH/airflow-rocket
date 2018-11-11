@@ -1,10 +1,11 @@
-name: airflow-rocket
+name: airflow_rocket
 channels:
   - conda-forge
   - defaults
 dependencies:
   - black=18.9b0
   - pylint=2.1.1
+  - pytest=3.10.0
   - python=3.6.6
   - pip:
     - apache-airflow==1.10.0
