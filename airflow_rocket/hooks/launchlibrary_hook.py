@@ -3,7 +3,6 @@ Hook for reading from the Launch Library API.
 https://launchlibrary.net/1.4
 """
 
-import json
 from typing import Optional
 
 import requests
@@ -63,4 +62,4 @@ class LaunchLibraryHook(BaseHook):
             # Launch Library returns 404 if no rocket launched in given interval.
             response.raise_for_status()
 
-        return json.loads(response.text)
+        return response.json()

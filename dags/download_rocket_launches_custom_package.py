@@ -23,6 +23,7 @@ download_rocket_launches = LaunchLibraryOperator(
     endpoint="launch",
     params={"startdate": "{{ ds }}", "enddate": "{{ tomorrow_ds }}"},
     result_path="/data/rocket_launches/ds={{ ds }}",
+    result_filename="launches.json",
     dag=dag,
 )
 

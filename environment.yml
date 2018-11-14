@@ -7,5 +7,7 @@ dependencies:
   - pylint=2.1.1
   - pytest=3.10.0
   - python=3.6.6
+  - pytest-mock=1.10.0
   - pip:
-    - apache-airflow==1.10.0
+    - apache-airflow[crypto]==1.10.0
+    - pytest-helpers-namespace==2017.11.11
