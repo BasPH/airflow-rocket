@@ -16,12 +16,7 @@ class TestLaunchLibraryOperator:
 
     def test_launchlibrary_operator(self, test_dag, mocker, tmpdir):
         """Write and validate a result file with LaunchLibraryOperator"""
-        mocker.patch.object(
-            BaseHook,
-            "get_connection",
-            return_value=Connection(host="launchlibrary.net", schema="https"),
-        )
-
+        mocker.patch.object(BaseHook, "get_connection", return_value=Connection())
         testdata = {"this": "is", "a": "test"}
         mocker.patch.object(LaunchLibraryHook, "get", return_value=testdata)
 
