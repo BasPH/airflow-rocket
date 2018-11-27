@@ -24,7 +24,7 @@ def postgres_credentials():
 def postgres(postgres_credentials):
     client = docker.from_env()
     container = client.containers.run(
-        "postgres:10.5-alpine",
+        "postgres:11.1-alpine",
         environment={
             "POSTGRES_USER": postgres_credentials.username,
             "POSTGRES_PASSWORD": postgres_credentials.password,
