@@ -1,12 +1,11 @@
 import json
-import time
 from collections import namedtuple
 from os import path
 from pathlib import Path
 
-import docker
 import pytest
 from airflow.models import Connection
+from pytest_docker_tools import container, fetch
 
 from airflow_rocket.operators.postgres_to_local_operator import (
     PostgresToLocalOperator,
@@ -20,27 +19,20 @@ def postgres_credentials():
     return PostgresCredentials("testuser", "testpass")
 
 
-@pytest.fixture
-def postgres(postgres_credentials):
-    client = docker.from_env()
-    container = client.containers.run(
-        "postgres:11.1-alpine",
-        environment={
-            "POSTGRES_USER": postgres_credentials.username,
-            "POSTGRES_PASSWORD": postgres_credentials.password,
-        },
-        ports={"5432/tcp": None},
-        detach=True,
-        volumes={
-            path.join(path.dirname(__file__), "postgres-init.sql"): {
-                "bind": "/docker-entrypoint-initdb.d/postgres-init.sql"
-            }
-        },
-    )
-    # do something better then sleep 10 here
-    time.sleep(10)
-    container.reload()
-    return container
+postgres_image = fetch(repository="postgres:11.1-alpine")
+postgres = container(
+    image="{postgres_image.id}",
+    environment={
+        "POSTGRES_USER": "{postgres_credentials.username}",
+        "POSTGRES_PASSWORD": "{postgres_credentials.password}",
+    },
+    ports={"5432/tcp": None},
+    volumes={
+        path.join(path.dirname(__file__), "postgres-init.sql"): {
+            "bind": "/docker-entrypoint-initdb.d/postgres-init.sql"
+        }
+    },
+)
 
 
 class TestPostgresToLocalOperator:
@@ -56,9 +48,7 @@ class TestPostgresToLocalOperator:
                 conn_type="postgres",
                 login=postgres_credentials.username,
                 password=postgres_credentials.password,
-                port=postgres.attrs["NetworkSettings"]["Ports"]["5432/tcp"][0][
-                    "HostPort"
-                ],
+                port=postgres.ports["5432/tcp"][0],
             ),
         )
 
@@ -75,7 +65,7 @@ class TestPostgresToLocalOperator:
         output_file = Path(output_path)
         assert output_file.is_file()
 
-        # Assert file contents
+        # Assert file contents, should be the same as in postgres-init.sql
         expected = [
             {"id": 1, "name": "dummy1"},
             {"id": 2, "name": "dummy2"},
