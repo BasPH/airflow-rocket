@@ -1,3 +1,5 @@
+"""Tests for PostgresToLocalOperator"""
+# pylint: disable=no-value-for-parameter,redefined-outer-name,no-self-use
 import json
 from collections import namedtuple
 from os import path
@@ -15,6 +17,7 @@ from airflow_rocket.operators.postgres_to_local_operator import (
 
 @pytest.fixture(scope="module")
 def postgres_credentials():
+    """Namedtuple containing postgres credentials to define only once."""
     PostgresCredentials = namedtuple("PostgresCredentials", ["username", "password"])
     return PostgresCredentials("testuser", "testpass")
 
@@ -36,9 +39,15 @@ postgres = container(
 
 
 class TestPostgresToLocalOperator:
+    """Tests for PostgresToLocalOperator"""
+
     def test_postgres_to_local_operator(
         self, test_dag, mocker, tmpdir, postgres, postgres_credentials
     ):
+        """
+        Run PostgresToLocalOperator with Postgres container and test if expected
+        values are read from Postgres DB.
+        """
         output_path = str(tmpdir / "pg_dump")
         mocker.patch.object(
             PostgresHook,
