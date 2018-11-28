@@ -26,9 +26,10 @@ weekday_person_to_email = {
     6: "Alice",  # Sunday
 }
 
+
 # Function returning name of task to execute
-def _get_person_to_email(**context):
-    person = weekday_person_to_email[context["execution_date"].weekday()]
+def _get_person_to_email(execution_date, **context):
+    person = weekday_person_to_email[execution_date.weekday()]
     return f"email_{person.lower()}"
 
 
@@ -50,7 +51,8 @@ final_task = DummyOperator(
     task_id="final_task", trigger_rule=TriggerRule.ONE_SUCCESS, dag=dag
 )
 
-# Create dummy tasks for all people in the dict above, and execute all after the branching task
+# Create dummy tasks for all people in the dict above,
+# and execute all after the branching task
 for name in set(weekday_person_to_email.values()):
     email_task = DummyOperator(task_id=f"email_{name.lower()}", dag=dag)
     branching >> email_task >> final_task
