@@ -13,17 +13,9 @@ dag = DAG(
     schedule_interval="0 0 * * *",
 )
 
-task1 = DummyOperator(task_id="task1", dag=dag)
-task2 = DummyOperator(task_id="task2", dag=dag)
-task3 = DummyOperator(task_id="task3", dag=dag)
-task4 = DummyOperator(task_id="task4", dag=dag)
-task5 = DummyOperator(task_id="task5", dag=dag)
-task6 = DummyOperator(task_id="task6", dag=dag)
-task7 = DummyOperator(task_id="task7", dag=dag)
-task8 = DummyOperator(task_id="task8", dag=dag)
-task9 = DummyOperator(task_id="task9", dag=dag)
+tasks = {i: DummyOperator(task_id=f"task{i}", dag=dag) for i in range(1, 10)}
 
-task1 >> [task2, task3]
-task2 >> task4 >> [task5, task7] >> task9
-task3 >> task6 >> task7
-task5 >> task7 >> task8 >> task9
+tasks[1] >> [tasks[2], tasks[3]]
+tasks[2] >> tasks[4] >> [tasks[5], tasks[7]] >> tasks[9]
+tasks[3] >> tasks[6] >> tasks[7]
+tasks[5] >> tasks[7] >> tasks[8] >> tasks[9]
