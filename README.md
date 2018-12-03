@@ -8,11 +8,11 @@ Throughout the blog post series, I explain various Airflow concepts and give pra
 
 **IMPORTANT**: The Dockerfile in this repository creates a single image containing all Airflow components, and examples and demos shown in the blog post. It is **NOT** intended for production usage! For more information on running Airflow in production, read the [blog post part 4](URL HERE).
 
-If you mount your own dags volume, the container takes 10-15 seconds to start up (only if you mounted your own DAGs volume). This is because `airflow initdb` is executed at startup. The idea is to clear all built-in DAGs and only display your own, mounted, DAGs.
+If you mount your own DAGs volume, the container takes 10-15 seconds to start up. This is because `airflow initdb` is executed at startup (if no `.airflow-rocket` file was found in the DAGs folder). The idea is to clear all built-in DAGs and only display your own, mounted, DAGs.
 
 Versions used:
 
-- Airflow 1.10
+- Airflow 1.10.0
 - Python 3.6.6
 - Launch Library API 1.4
 
