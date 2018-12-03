@@ -7,7 +7,7 @@ from airflow.operators.bash_operator import BashOperator
 args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="hello_dag",
+    dag_id="1_hello_dag",
     default_args=args,
     description="Demo DAG showing a hello world example.",
 )

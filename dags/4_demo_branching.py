@@ -9,7 +9,7 @@ from airflow.utils.trigger_rule import TriggerRule
 args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="demo_branching",
+    dag_id="4_demo_branching",
     default_args=args,
     description="Demo DAG showing BranchPythonOperator.",
     schedule_interval="0 0 * * *",

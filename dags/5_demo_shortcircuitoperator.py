@@ -1,33 +1,28 @@
-"""Demo DAG showing AirflowSkipException."""
+"""Demo DAG showing ShortCircuitOperator."""
 
 import datetime
 
 import airflow
-from airflow.exceptions import AirflowSkipException
 from airflow.models import DAG
 from airflow.operators.dummy_operator import DummyOperator
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python_operator import ShortCircuitOperator
 from dateutil.relativedelta import relativedelta
 
 args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="demo_airflowskipexception",
+    dag_id="5_demo_shortcircuitoperator",
     default_args=args,
-    description="Demo DAG showing AirflowSkipException.",
+    description="Demo DAG showing ShortCircuitOperator.",
     schedule_interval="0 0 * * *",
 )
 
 
 def _check_date(execution_date, **context):
-    min_date = datetime.datetime.now() - relativedelta(weeks=1)
-    if execution_date < min_date:
-        raise AirflowSkipException(
-            f"No data available on this execution_date ({execution_date})."
-        )
+    return execution_date > (datetime.datetime.now() - relativedelta(weeks=1))
 
 
-check_date = PythonOperator(
+check_date = ShortCircuitOperator(
     task_id="check_if_min_date",
     python_callable=_check_date,
     provide_context=True,

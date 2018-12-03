@@ -5,14 +5,10 @@ import airflow
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
-default_args = {
-    "owner": "godatadriven",
-    "depends_on_past": True,
-    "start_date": airflow.utils.dates.days_ago(14),
-}
+default_args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="airflow_context",
+    dag_id="2_airflow_context",
     default_args=default_args,
     schedule_interval="@daily",
     description="DAG printing the Airflow context and execution date.",

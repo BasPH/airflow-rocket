@@ -7,7 +7,7 @@ from airflow.operators.dummy_operator import DummyOperator
 args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="part1_example",
+    dag_id="0_part1_example",
     default_args=args,
     description="DAG shown in part 1 of Airflow blog post.",
     schedule_interval="0 0 * * *",
