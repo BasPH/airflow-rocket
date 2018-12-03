@@ -12,7 +12,7 @@ args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 dag = DAG(
     dag_id="9_basehook_get_connection",
     default_args=args,
-    schedule_interval="@daily",
+    schedule_interval="0 0 * * *",
     description="Demo DAG initialising BaseHook in function to avoid Airflow DB calls.",
 )
 

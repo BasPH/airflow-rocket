@@ -10,7 +10,7 @@ default_args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_
 dag = DAG(
     dag_id="2_airflow_context",
     default_args=default_args,
-    schedule_interval="@daily",
+    schedule_interval="0 0 * * *",
     description="DAG printing the Airflow context and execution date.",
 )
 
