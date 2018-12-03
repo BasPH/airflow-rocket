@@ -1,9 +1,15 @@
+"""Dummy Airflow test showing usage of test_dag and run_task()."""
+
+# pylint: disable=no-self-use
 import pytest
 from airflow.operators.bash_operator import BashOperator
 
 
 class TestDummy:
+    """Dummy Airflow tests."""
+
     def test_dummy(self, test_dag, tmpdir):
+        """Test BashOperator writing file to local disk."""
         tmpfile = tmpdir.join("hello.txt")
 
         task = BashOperator(

@@ -1,3 +1,5 @@
+"""Dump JSON data from Postgres to local storage."""
+
 import json
 from typing import Optional
 
@@ -8,6 +10,10 @@ from psycopg2.extras import RealDictCursor
 
 
 class PostgresToLocalOperator(BaseOperator):
+    """
+    Airflow operator for storing a JSON-formatted
+    Postgres query result on local disk.
+    """
 
     ui_color = "#705B74"
     ui_fgcolor = "#8FA48B"
