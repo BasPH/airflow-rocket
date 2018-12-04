@@ -2,11 +2,11 @@
 
 # Airflow Rocket
 
-This repository contains code accompanying this [Airflow blog post series](URL HERE).
+This repository contains code accompanying [this Airflow blog post series](https://blog.godatadriven.com). To get started, run `docker run -d -p 8080:8080 basph/airflow-rocket`.
 
-Throughout the blog post series, I explain various Airflow concepts and give practices examples using the [Launch Library API](https://launchlibrary.net/docs/1.4/api.html), hence the repository name "Airflow Rocket". 
+Throughout the blog post series, I explain various Airflow concepts and give examples using the [Launch Library API](https://launchlibrary.net/docs/1.4/api.html), hence the repository name "Airflow Rocket". 
 
-**IMPORTANT**: The Dockerfile in this repository creates a single image containing all Airflow components, and examples and demos shown in the blog post. It is **NOT** intended for production usage! For more information on running Airflow in production, read the [blog post part 4](URL HERE).
+**IMPORTANT**: The Dockerfile in this repository creates a single image containing all Airflow components, and examples and demos shown in the blog post. It is **NOT** intended for production usage! For more information on running Airflow in production, read the [blog post part 4](https://blog.godatadriven.com).
 
 If you mount your own DAGs volume, the container takes 10-15 seconds to start up. This is because `airflow initdb` is executed at startup (if no `.airflow-rocket` file was found in the DAGs folder). The idea is to clear all built-in DAGs and only display your own, mounted, DAGs.
 
