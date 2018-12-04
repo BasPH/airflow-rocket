@@ -26,10 +26,13 @@ hadolint:
 
 .PHONY: build
 build:
-	docker build -t godatadriven/airflow-rocket:$(version) .
+	docker build -t basph/airflow-rocket:$(version) .
+	docker tag basph/airflow-rocket:$(version) basph/airflow-rocket:latest
 
 .PHONY: ci
 ci: | black pylint misspell pytest hadolint build
 
-#.PHONY: push
-#push: 
+.PHONY: push
+push:
+	docker push basph/airflow-rocket:$(version)
+	docker push basph/airflow-rocket:latest
