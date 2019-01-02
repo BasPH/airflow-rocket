@@ -1,4 +1,4 @@
-"""This DAG demonstrates the BashOperator with templates files."""
+"""This DAG demonstrates the BashOperator with a templated file."""
 
 from os import path
 
