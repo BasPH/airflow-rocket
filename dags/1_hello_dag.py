@@ -14,7 +14,5 @@ dag = DAG(
 )
 
 t1 = BashOperator(task_id="sleep_a_bit", bash_command="sleep 5", dag=dag)
-
 t2 = BashOperator(task_id="print_date", bash_command="date", dag=dag)
-
 t1 >> t2
