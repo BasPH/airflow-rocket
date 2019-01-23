@@ -9,5 +9,5 @@ dependencies:
   - python=3.6.6
   - pytest-mock=1.10.0
   - pip:
-    - apache-airflow[crypto]==1.10.0
+    - apache-airflow[crypto]==1.10.2
     - pytest-helpers-namespace==2017.11.11
