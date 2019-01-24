@@ -12,7 +12,7 @@ If you mount your own DAGs volume, the container takes 10-15 seconds to start up
 
 Versions used:
 
-- Airflow 1.10.0
+- Airflow 1.10.2
 - Python 3.6.6
 - Launch Library API 1.4
 
