@@ -1,5 +1,6 @@
 """Tests for PostgresToLocalOperator"""
 # pylint: disable=no-value-for-parameter,redefined-outer-name,no-self-use
+
 import json
 from collections import namedtuple
 from os import path

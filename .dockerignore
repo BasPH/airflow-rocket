@@ -5,3 +5,5 @@ Makefile
 README.md
 rocket.png
 tests
+__pycache__
+airflow_rocket.egg-info

@@ -9,7 +9,7 @@ from airflow.operators.bash_operator import BashOperator
 default_args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
 
 dag = DAG(
-    dag_id="bring_me_coffee",
+    dag_id="b_pythonsensor",
     default_args=default_args,
     schedule_interval="0 0 * * *",
     description="Example PythonSensor",
@@ -17,10 +17,8 @@ dag = DAG(
 
 
 def _time_for_coffee():
-    if 6 <= datetime.now().hour < 12:
-        return True
-    else:
-        return False
+    """I drink coffee between 6 and 12"""
+    return 6 <= datetime.now().hour < 12
 
 
 time_for_coffee = PythonSensor(

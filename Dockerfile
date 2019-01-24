@@ -5,7 +5,11 @@ ENV SLUGIFY_USES_TEXT_UNIDECODE=yes \
 	AIRFLOW__CORE__LOAD_EXAMPLES=False \
 	AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
 
-COPY . /root/airflow_rocket
+RUN mkdir -p /root/airflow_rocket/src
+COPY environment.yml /root/airflow_rocket
+COPY setup.py /root/airflow_rocket
+COPY entrypoint.sh /root/airflow_rocket
+COPY src /root/airflow_rocket/src
 COPY dags /root/airflow/dags
 
 # hadolint ignore=DL3008,DL3013
