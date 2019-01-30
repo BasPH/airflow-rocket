@@ -1,3 +1,7 @@
+# Note: this environment.yml contains all development dependencies.
+# If you're only interested in running the airflow_rocket library,
+# it's okay to simply install from setup.py.
+
 name: airflow_rocket
 channels:
   - conda-forge
@@ -6,8 +10,9 @@ dependencies:
   - black=18.9b0
   - pylint=2.1.1
   - pytest=3.10.0
-  - python=3.6.6
+  - python=3.6.8
   - pytest-mock=1.10.0
+  - psycopg2=2.7.6.1
   - pip:
     - apache-airflow[crypto]==1.10.2
     - pytest-helpers-namespace==2017.11.11

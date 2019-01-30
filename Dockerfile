@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3:4.5.11
+FROM continuumio/miniconda3:4.5.12
 
 ENV SLUGIFY_USES_TEXT_UNIDECODE=yes \
 	PYTHONDONTWRITEBYTECODE=1 \
@@ -6,7 +6,6 @@ ENV SLUGIFY_USES_TEXT_UNIDECODE=yes \
 	AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
 
 RUN mkdir -p /root/airflow_rocket/src
-COPY environment.yml /root/airflow_rocket
 COPY setup.py /root/airflow_rocket
 COPY entrypoint.sh /root/airflow_rocket
 COPY src /root/airflow_rocket/src
@@ -15,7 +14,7 @@ COPY dags /root/airflow/dags
 # hadolint ignore=DL3008,DL3013
 RUN apt-get update && \
 	apt-get install -y gcc g++ --no-install-recommends && \
-    conda env update -f /root/airflow_rocket/environment.yml -n base && \
+    conda install --yes python=3.6 -n base && \
     pip install /root/airflow_rocket && \
     airflow initdb && \
 	apt-get remove -y --purge gcc g++ && \
