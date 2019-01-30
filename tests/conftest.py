@@ -23,6 +23,5 @@ def run_task(task, dag):
     """Run an Airflow task."""
     dag.clear()
     task.run(
-        start_date=dag.default_args["start_date"],
-        end_date=dag.default_args["start_date"],
+        start_date=dag.default_args["start_date"], end_date=dag.default_args["start_date"]
     )

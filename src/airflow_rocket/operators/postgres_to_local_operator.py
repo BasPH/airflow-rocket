@@ -24,7 +24,7 @@ class PostgresToLocalOperator(BaseOperator):
         pg_query: str,
         local_path: str,
         postgres_conn_id: Optional[str] = None,
-        **kwargs,
+        **kwargs
     ):
         super().__init__(**kwargs)
         self._pg_query = pg_query

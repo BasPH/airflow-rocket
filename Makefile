@@ -2,7 +2,7 @@ version := 0.1
 
 .PHONY: black
 black:
-	find . -name '*.py' | xargs black --check
+	find . -name '*.py' | xargs black --check --line-length=90
 
 .PHONY: pylint
 pylint:

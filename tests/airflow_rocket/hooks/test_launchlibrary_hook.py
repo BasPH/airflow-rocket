@@ -21,8 +21,7 @@ class TestLaunchLibraryHook:
         hook = LaunchLibraryHook(conn_id="test")
         mock_get = mocker.patch.object(requests.Session, "get")
         hook.get(
-            endpoint="launch",
-            params={"startdate": "2018-01-01", "enddate": "2018-02-01"},
+            endpoint="launch", params={"startdate": "2018-01-01", "enddate": "2018-02-01"}
         )
 
         mock_get.assert_called_once_with(
