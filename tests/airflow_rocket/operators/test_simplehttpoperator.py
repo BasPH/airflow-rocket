@@ -21,8 +21,6 @@ def test_simple_http_operator(test_dag, mocker):
     )
 
     def _check_light(sunset_sunrise_response):
-        import pdb
-        pdb.set_trace()
         results = sunset_sunrise_response.json()["results"]
 
         # Example: 2019-02-20T06:59:30+00:00
