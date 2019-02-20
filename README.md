@@ -2,7 +2,7 @@
 
 # Airflow Rocket
 
-This repository contains code accompanying [this Airflow blog post series](https://blog.godatadriven.com). To get started, run `docker run -d -p 8080:8080 basph/airflow-rocket`.
+This repository contains code accompanying ~this Airflow blog post series~WIP. To get started, run `docker run -d -p 8080:8080 basph/airflow-rocket`.
 
 Throughout the blog post series, I explain various Airflow concepts and give examples using the [Launch Library API](https://launchlibrary.net/docs/1.4/api.html), hence the repository name "Airflow Rocket". 
 
